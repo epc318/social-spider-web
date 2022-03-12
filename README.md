@@ -33,6 +33,9 @@ Social Spider is an application that allows the user to create an account and sh
 
 
 ## Usage
+To use this app, simply clone the repo to your local machine and run 'npm run dev' in the terminal/root directory. Open insomnia to test the routes.
+
+Watch my Walkthrough video testing the API routes [HERE:](https://watch.screencastify.com/v/dzoAjYUxhKtnkp6xs4SJ)
 
 
 ## Contribution
