@@ -44,9 +44,8 @@ const reactionsSchema = new Schema(
         reactionBody: {
             type: String,
             required: true,
-            validate: {
-                maxlength: 280
-            }
+            minlength: 1,
+            maxlength: 280
         },
         username: {
             type: String,
