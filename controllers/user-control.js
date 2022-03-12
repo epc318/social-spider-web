@@ -8,6 +8,10 @@ const userControllers = {
                 path: "friends",
                 select: "-__v"
             })
+            .populate({
+                path: "friends",
+                select: "-__v"
+            })
             .select("-__v")
             .then(dbUserData => res.json(dbUserData))
             .catch(err => {
@@ -19,6 +23,15 @@ const userControllers = {
 
     getUserById({ parameters }, res) {
         Users.findOne({ _id: parameters.id })
+            .populate({
+                path: "thoughts",
+                select: "-__v"
+            })
+            .populate({
+                path: "friends",
+                select: "-__v"
+            })
+            .select("-__v")
             .then(dbUserData => {
                 if(!dbUserData) {
                     res.status(404).json({ message: "User ID not found, please check input and try again!" });
