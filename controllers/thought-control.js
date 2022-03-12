@@ -1,6 +1,6 @@
 const { Thoughts } = require("../models");
 
-const thoughtRoutes = {
+const thoughtControllers = {
     getAllThoughts(req, res) {
         Thoughts.find({})
             .then(dbUserData => res.json(dbUserData))
@@ -13,7 +13,7 @@ const thoughtRoutes = {
 
 
 
-    
+
 };
 
-module.exports = thoughtRoutes;
+module.exports = thoughtControllers;
