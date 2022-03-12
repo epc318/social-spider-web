@@ -24,7 +24,7 @@ Social Spider is an application that allows the user to create an account and sh
 
 
 ## Source Code Screenshot
-![Source Code Example](public/images/Source_Code.png
+![Source Code Example](public/images/Source_Code.png)
 
 ## Installation
 
