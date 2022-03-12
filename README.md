@@ -1,7 +1,7 @@
 # Social Spider Web
   
 ## Description
-In The Know Tech Blog is projected to be the next big user-source information page in the tech community. There are a few thing yet to be done with this application but it currently contains most of the necessary code for the application to run. However, there are some issues with the routing and ports that prevent a lot of capability as well as online deployment.
+Social Spider is an application that allows the user to create an account and share their thoughts. They can also add friends to view and react to their thoughts. This is all achieved via api routing using node packages./
 
 ## User Story
 * AS A social media startup
@@ -24,13 +24,12 @@ In The Know Tech Blog is projected to be the next big user-source information pa
 
 
 ## Source Code Screenshot
-![Source Code Example]()
+![Source Code Example](public/images/Source_Code.png
 
 ## Installation
 
-* MySQL2
-* Sequelize
-
+* Express
+* Mongoose
 
 
 ## Usage
@@ -39,6 +38,7 @@ In The Know Tech Blog is projected to be the next big user-source information pa
 ## Contribution
 - This project was made by Evan Carlson and contains references and material learned in the University of Minnesota Web Dev Bootcamp.
 
+No Contributions are being accepted at this time.
 
 ## Questions
 If you have any questions on this application, feel free to reach me through my GitHub profile [epc318](https://github.com/epc318) or [E-mail](carl4917@umn.edu):
