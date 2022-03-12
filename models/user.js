@@ -1,9 +1,11 @@
 const { Schema, model } = require("mongoose");
 
+
 let validateEmailAdd = function(email) {
-    //let emailRegEx =;
+    let emailRegEx =/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     return emailRegEx.test(email);
 };
+
 
 const userSchema = new Schema(
     {
@@ -19,13 +21,12 @@ const userSchema = new Schema(
             type: String,
             required: true,
             unique: true,
-            validate: [validateEmailAdd, "Improper format, please enter a valid E-mail address!"]
         }
     },
     {
         thoughts: [{
             type: Schema.Types.ObjectId,
-            ref: "comment"
+            ref: "Thoughts"
         }]
     },
     {
@@ -41,10 +42,19 @@ const userSchema = new Schema(
     }
 );
 
+
+userSchema.path("email").validate(function(email) {
+    let emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    return emailRegex.test(email);
+}, "Improper format, please enter a valid E-mail address!");
+
+
 userSchema.virtual("friendNum").get(function() {
     return this.friends.length;
 });
 
+
 const Users = model("Users", userSchema);
+
 
 module.exports = Users;
