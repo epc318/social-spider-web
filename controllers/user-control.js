@@ -76,6 +76,40 @@ const userControllers = {
                 res.json(dbUserData);
             })
             .catch(err => res.status(400).json(err));
+    },
+
+
+    addFriend({ body, parameters }, res) {
+        Users.findOneAndUpdate(
+            { _id: params.userId },
+            { $push: { friends: body.friendId } },
+            { new: true, runValidators: true }
+        )
+            .then(dbUserData => {
+                if(!dbUserData) {
+                    res.status(404).json({ message: "User ID not found, please check input and try again!" });
+                    return;
+                }
+                res.json(dbUserData);
+            })
+            .catch(err => res.status(400).json(err));
+    },
+
+
+    deleteFriend({ parameters }, res) {
+        Users.findOneAndUpdate(
+            { _id: params.userId },
+            { $pull: { friends: { id: params.friendId } } },
+            { new: true, runValidators: true }
+        )
+            .then(dbUserData => {
+                if(!dbUserData) {
+                    res.status(404).json({ message: "User ID not found, please check input and try again!" });
+                    return;
+                }
+                res.json(dbUserData);
+            })
+            .catch(err => res.status(400).json(err));
     }
 };
 
