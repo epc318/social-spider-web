@@ -1,5 +1,7 @@
 const { Thoughts, Users } = require("../models");
 
+
+// start thought controllers 
 const thoughtControllers = {
     getAllThoughts(req, res) {
         Thoughts.find({})
@@ -10,7 +12,7 @@ const thoughtControllers = {
             });
     },
 
-
+// get a single thought
     getThoughtById({ parameters }, res) {
         Thoughts.findOne({ _id: parameters.id })
         .then(dbThotData => {
@@ -26,7 +28,7 @@ const thoughtControllers = {
         });
     },
 
-
+// create a single thought
     createThought({ body }, res) {
         Thoughts.create(body)
         .then(dbThoughtData => {
@@ -41,7 +43,7 @@ const thoughtControllers = {
         .catch(err => res.status(400).json(err));
     },
 
-
+// update a single thought
     updateThought({ parameters, body }, res) {
         Thoughts.findOneAndUpdate({ _id: parameters.id }, body, { new: true, runValidators: true })
         .then(dbThotData => {
@@ -54,7 +56,7 @@ const thoughtControllers = {
         .catch(err => res.status(400).json(err));
     },
 
-
+// delete a single thought
     deleteThought({ parameters }, res) {
         Thoughts.findOneAndDelete({ _id: parameters.id })
             .then(dbThotData => {
@@ -67,7 +69,7 @@ const thoughtControllers = {
             .catch(err => res.status(400).json(err));
     },
 
-
+// create a reaction to a thought
     createReaction({ parameters, body }, res) {
         Thoughts.findOneAndUpdate(
             { _id: parameters.thoughtId },
@@ -84,7 +86,7 @@ const thoughtControllers = {
             .catch(err => res.status(400).json(err));
     },
 
-
+// delete your reaction to a thought
     deleteReaction({ parameters }, res) {
         Thoughts.findOneAndUpdate(
             { _id: parameters.thoughtId },
