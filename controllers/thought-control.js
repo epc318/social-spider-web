@@ -13,8 +13,8 @@ const thoughtControllers = {
     },
 
 // get a single thought
-    getThoughtById({ parameters }, res) {
-        Thoughts.findOne({ _id: parameters.id })
+    getThoughtById({ params }, res) {
+        Thoughts.findOne({ _id: params.id })
         .then(dbThotData => {
             if(!dbThotData) {
                 res.status(404).json({ message: "Thought ID not found, please check input and try again!" });
@@ -44,8 +44,8 @@ const thoughtControllers = {
     },
 
 // update a single thought
-    updateThought({ parameters, body }, res) {
-        Thoughts.findOneAndUpdate({ _id: parameters.id }, body, { new: true, runValidators: true })
+    updateThought({ params, body }, res) {
+        Thoughts.findOneAndUpdate({ _id: params.id }, body, { new: true, runValidators: true })
         .then(dbThotData => {
             if(!dbThotData) {
                 res.status(404).json({ message: "Thought ID not found, please check input and try again!"});
@@ -57,8 +57,8 @@ const thoughtControllers = {
     },
 
 // delete a single thought
-    deleteThought({ parameters }, res) {
-        Thoughts.findOneAndDelete({ _id: parameters.id })
+    deleteThought({ params }, res) {
+        Thoughts.findOneAndDelete({ _id: params.id })
             .then(dbThotData => {
                 if(!dbThotData) {
                     res.json({ message: "Thought ID not found, please check input and try again!" });
@@ -70,9 +70,9 @@ const thoughtControllers = {
     },
 
 // create a reaction to a thought
-    createReaction({ parameters, body }, res) {
+    createReaction({ params, body }, res) {
         Thoughts.findOneAndUpdate(
-            { _id: parameters.thoughtId },
+            { _id: params.thoughtId },
             { $push: { reactions: body } },
             { new: true, runValidators: true }
         )
@@ -87,10 +87,10 @@ const thoughtControllers = {
     },
 
 // delete your reaction to a thought
-    deleteReaction({ parameters }, res) {
+    deleteReaction({ params }, res) {
         Thoughts.findOneAndUpdate(
-            { _id: parameters.thoughtId },
-            { $pull: { reactions: { reactionId: parameters.reactionId} } },
+            { _id: params.thoughtId },
+            { $pull: { reactions: { reactionId: params.reactionId} } },
             { new: true }
         )
             .then(dbThotData => res.json(dbThotData))

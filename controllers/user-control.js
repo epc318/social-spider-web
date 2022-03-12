@@ -21,8 +21,8 @@ const userControllers = {
     },
 
 //get a single user
-    getUserById({ parameters }, res) {
-        Users.findOne({ _id: parameters.id })
+    getUserById({ params }, res) {
+        Users.findOne({ _id: params.id })
             .populate({
                 path: "thoughts",
                 select: "-__v"
@@ -53,8 +53,8 @@ const userControllers = {
     },
 
 //update your user 
-    updateUser({ parameters, body }, res) {
-        Users.findOneAndUpdate({ _id: parameters.id }, body, { new: true, runValidators: true })
+    updateUser({ params, body }, res) {
+        Users.findOneAndUpdate({ _id: params.id }, body, { new: true, runValidators: true })
         .then(dbUserData => {
             if(!dbUserData) {
                 res.status(404).json({ message: "User ID not found, please check input and try again!"});
@@ -66,8 +66,8 @@ const userControllers = {
     },
 
 //delete a user
-    deleteUser({ parameters }, res) {
-        Users.findOneAndDelete({ _id: parameters.id })
+    deleteUser({ params }, res) {
+        Users.findOneAndDelete({ _id: params.id })
             .then(dbUserData => {
                 if(!dbUserData) {
                     res.json({ message: "User ID not found, please check input and try again!" });
@@ -79,9 +79,9 @@ const userControllers = {
     },
 
 //add a friend
-    addFriend({ body, parameters }, res) {
+    addFriend({ body, params }, res) {
         Users.findOneAndUpdate(
-            { _id: parameters.userId },
+            { _id: params.userId },
             { $push: { friends: body.friendId } },
             { new: true, runValidators: true }
         )
@@ -96,10 +96,10 @@ const userControllers = {
     },
 
 //delete a friend
-    deleteFriend({ parameters }, res) {
+    deleteFriend({ params }, res) {
         Users.findOneAndUpdate(
-            { _id: parameters.userId },
-            { $pull: { friends: { id: parameters.friendId } } },
+            { _id: params.userId },
+            { $pull: { friends: { id: params.friendId } } },
             { new: true, runValidators: true }
         )
             .then(dbUserData => {
